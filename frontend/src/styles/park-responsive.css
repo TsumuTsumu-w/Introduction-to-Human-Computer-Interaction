@@ -1,0 +1,10 @@
+@media (max-width: 1180px) {
+  .park-layout { grid-template-columns: 1fr; }
+  .park-main { padding: 18px; }
+  .grid-two { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 780px) {
+  .section-title { font-size: 38px; }
+  .park-main { padding: 14px; }
+}

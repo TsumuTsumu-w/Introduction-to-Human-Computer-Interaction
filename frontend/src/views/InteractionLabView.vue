@@ -1,0 +1,1 @@
+<template><PlayStageView /></template><script setup>import PlayStageView from './PlayStageView.vue'</script>

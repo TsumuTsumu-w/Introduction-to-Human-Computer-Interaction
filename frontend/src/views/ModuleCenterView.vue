@@ -1,0 +1,1 @@
+<template><GameGardenView /></template><script setup>import GameGardenView from './GameGardenView.vue'</script>

@@ -1,0 +1,1 @@
+<template><GameDetailView /></template><script setup>import GameDetailView from './GameDetailView.vue'</script>

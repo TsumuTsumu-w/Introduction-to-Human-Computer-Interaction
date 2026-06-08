@@ -1,0 +1,19 @@
+GestureFlow Park 启动说明
+
+1. 启动后端
+cd D:\project\gestureflow_hci_project_v4\backend
+npm install --registry=https://registry.npmmirror.com/
+npm run dev
+
+2. 启动前端
+cd D:\project\gestureflow_hci_project_v4\frontend
+npm install --registry=https://registry.npmmirror.com/
+npm run dev
+
+默认票：
+admin
+admin123456
+
+说明：
+当前只保留一个小游戏：手势反应挑战。
+页面外壳只负责乐园氛围、入口、规则牌、手账和工具箱。

@@ -1,0 +1,1 @@
+<template><ToolboxView /></template><script setup>import ToolboxView from './ToolboxView.vue'</script>

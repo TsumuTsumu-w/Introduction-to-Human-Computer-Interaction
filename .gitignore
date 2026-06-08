@@ -1,0 +1,53 @@
+# Dependencies
+node_modules/
+frontend/node_modules/
+backend/node_modules/
+
+# Build output
+dist/
+build/
+frontend/dist/
+backend/dist/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# Runtime data and local database files
+*.sqlite
+*.sqlite3
+*.db
+*.sql.bak
+uploads/
+tmp/
+temp/
+
+# Test and coverage output
+coverage/
+.nyc_output/
+
+# Tool caches
+.cache/
+.vite/
+.eslintcache
+
+# Local editor and OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Project-generated backup folders
+_template_game_backups/
+frontend/_safe_backups/

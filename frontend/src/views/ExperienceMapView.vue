@@ -1,0 +1,1 @@
+<template><ParkMapView /></template><script setup>import ParkMapView from './ParkMapView.vue'</script>

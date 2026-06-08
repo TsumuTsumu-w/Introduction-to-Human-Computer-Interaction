@@ -1,0 +1,209 @@
+:root {
+  --ink: #24354f;
+  --muted: #687879;
+  --gold: #d7a94c;
+  --cream: #fff7df;
+  --paper: rgba(255, 249, 231, .78);
+  --paper-strong: rgba(255, 250, 236, .92);
+  --line: rgba(170, 131, 72, .26);
+  --coral: #e79367;
+  --sky: #84c5dc;
+  --mint: #a9d5b5;
+  --wood: #9a6b36;
+  --shadow: 0 24px 70px rgba(65, 50, 26, .13);
+}
+
+.park-shell {
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  background: #fff4d8;
+}
+
+.park-shell::before {
+  content: "";
+  position: fixed;
+  inset: -2.5%;
+  background-image: var(--park-bg);
+  background-size: cover;
+  background-position: center;
+  filter: blur(3.2px) saturate(.9) brightness(1.06);
+  opacity: .42;
+  transform: scale(1.04);
+  pointer-events: none;
+}
+
+.park-shell::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at 16% 14%, rgba(255,255,255,.72), transparent 30%),
+    radial-gradient(circle at 84% 18%, rgba(221,244,249,.46), transparent 34%),
+    linear-gradient(180deg, rgba(255,252,240,.70), rgba(255,244,218,.78));
+  pointer-events: none;
+}
+
+.park-layout {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 278px minmax(0, 1fr);
+}
+
+.park-main {
+  min-width: 0;
+  padding: 22px 28px 48px;
+}
+
+.page-field {
+  position: relative;
+  display: grid;
+  gap: 24px;
+}
+
+.ticket-card,
+.wood-card,
+.paper-card,
+.map-card {
+  position: relative;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(18px);
+}
+
+.ticket-card {
+  border-radius: 32px;
+  background:
+    radial-gradient(circle at 15% 6%, rgba(255,255,255,.82), transparent 34%),
+    linear-gradient(135deg, rgba(255,251,241,.95), rgba(255,239,204,.82));
+}
+
+.wood-card {
+  border-radius: 24px;
+  background:
+    linear-gradient(135deg, rgba(255,238,183,.94), rgba(234,190,109,.78));
+  border-color: rgba(154, 107, 54, .32);
+}
+
+.paper-card {
+  border-radius: 26px;
+  background:
+    radial-gradient(circle at 12% 8%, rgba(255,255,255,.84), transparent 34%),
+    linear-gradient(135deg, rgba(255,253,246,.94), rgba(255,246,225,.86));
+}
+
+.map-card {
+  border-radius: 36px;
+  background:
+    radial-gradient(circle at 16% 18%, rgba(255,255,255,.88), transparent 32%),
+    linear-gradient(135deg, rgba(232,248,240,.88), rgba(255,242,196,.86));
+}
+
+.section-kicker {
+  margin: 0 0 8px;
+  color: #b77945;
+  text-transform: uppercase;
+  letter-spacing: .18em;
+  font-weight: 950;
+  font-size: 12px;
+}
+
+.section-title {
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(32px, 5vw, 70px);
+  line-height: .96;
+  letter-spacing: -.07em;
+}
+
+.section-copy {
+  margin: 14px 0 0;
+  color: #607070;
+  line-height: 1.86;
+  font-size: 16px;
+}
+
+.park-button {
+  min-height: 46px;
+  border-radius: 999px;
+  padding: 0 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #f2bd67, #e28d66);
+  color: #fff;
+  font-weight: 950;
+  box-shadow: 0 14px 30px rgba(172, 109, 54, .22);
+  cursor: pointer;
+}
+
+.park-button.soft {
+  background: rgba(255,255,255,.72);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  box-shadow: 0 10px 22px rgba(80, 62, 35, .08);
+}
+
+.park-button.ghost {
+  background: rgba(255,250,235,.46);
+  color: #805c29;
+  border: 1px solid rgba(178, 132, 68, .28);
+  box-shadow: none;
+}
+
+.badge {
+  display: inline-flex;
+  min-height: 28px;
+  align-items: center;
+  border-radius: 999px;
+  padding: 0 10px;
+  background: rgba(255,246,218,.78);
+  border: 1px solid rgba(205, 159, 83, .28);
+  color: #98673a;
+  font-weight: 950;
+  font-size: 12px;
+}
+
+.grid-two {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(330px, .95fr);
+  gap: 22px;
+}
+
+.soft-list {
+  display: grid;
+  gap: 14px;
+}
+
+.soft-row {
+  border-radius: 20px;
+  padding: 16px 18px;
+  background: rgba(255,255,255,.62);
+  border: 1px solid rgba(190, 150, 85, .2);
+}
+
+.asset-img {
+  user-select: none;
+  pointer-events: none;
+}
+
+.empty-state {
+  padding: 34px;
+  text-align: center;
+  color: #6c7a78;
+}
+
+.float-sticker {
+  position: absolute;
+  z-index: 0;
+  opacity: .92;
+  filter: drop-shadow(0 18px 28px rgba(68, 53, 31, .16));
+}
+
+.content-layer {
+  position: relative;
+  z-index: 1;
+}
