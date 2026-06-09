@@ -1,4 +1,4 @@
-﻿export const games = [
+export const games = [
   {
     id: 'reaction-wave',
     name: '手势反应挑战',
@@ -16,6 +16,21 @@
     summary: '以手势为核心的全屏轻 3D 自由积木玩具：张开移动、闭合抓取、张开放下，按钮负责换块、按钮吹风和重置。'
   },
   {
+    id: 'emotion-cipher-gate',
+    name: '星语密门',
+    status: 'expression-code-game',
+    theme: '表情密钥厅',
+    template: false,
+    summary: '用摄像头识别微笑与吹气，依次点亮三道表情锁，再输入合成口令开启密门。'
+  },
+  {
+    id: 'voice-gesture-radio',
+    name: '手势星图导航',
+    status: 'gesture-star-map-game',
+    theme: '手势导航棋盘',
+    template: false,
+    summary: '用手势控制星图信标移动：张开手掌上移、握拳下移、V 左移、点赞右移，在倒计时内点亮目标星点。'
+  },  {
     id: 'bell-template',
     name: '乐园敲敲钟',
     status: 'template',
