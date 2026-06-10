@@ -9,6 +9,7 @@ import PlayStageView from '../views/PlayStageView.vue'
 import BlockFreeBuildView from '../views/BlockFreeBuildView.vue'
 import EmotionCipherGateGame from '../views/games/EmotionCipherGateGame.vue'
 import VoiceGestureRadioGame from '../views/games/VoiceGestureRadioGame.vue'
+import ColorPaperSynthGame from '../views/games/ColorPaperSynthGame.vue'
 import RulesView from '../views/RulesView.vue'
 import RecordsView from '../views/RecordsView.vue'
 import ToolboxView from '../views/ToolboxView.vue'
@@ -29,6 +30,7 @@ const routes = [
       { path: 'play/magic-block-builder', name: 'block-freebuild', component: BlockFreeBuildView, meta: { title: '星桥积木魔法屋' } },
       { path: 'play/emotion-cipher-gate', name: 'emotion-cipher-gate', component: EmotionCipherGateGame, meta: { title: '星语密门' } },
       { path: 'play/voice-gesture-radio', name: 'voice-gesture-radio', component: VoiceGestureRadioGame, meta: { title: '手势星图导航' } },
+      { path: 'play/color-paper-synth', name: 'color-paper-synth', component: ColorPaperSynthGame, meta: { title: '彩纸合成器' } },
       { path: 'play/:id', name: 'play-stage', component: PlayStageView, meta: { title: '游玩场' } },
       { path: 'rules', name: 'rules', component: RulesView, meta: { title: '规则牌' } },
       { path: 'records', name: 'records', component: RecordsView, meta: { title: '手账' } },

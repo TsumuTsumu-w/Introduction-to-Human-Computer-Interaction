@@ -30,7 +30,16 @@ export const games = [
     theme: '手势导航棋盘',
     template: false,
     summary: '用手势控制星图信标移动：张开手掌上移、握拳下移、V 左移、点赞右移，在倒计时内点亮目标星点。'
-  },  {
+  },
+  {
+    id: 'color-paper-synth',
+    name: '彩纸合成器',
+    status: 'paper-synth-game',
+    theme: '纸面音乐厅',
+    template: false,
+    summary: '用选色笔把纸面色块绑定为电子琴音和低音鼓，随后用食指进入固定色块框来触发声音。'
+  },
+  {
     id: 'bell-template',
     name: '乐园敲敲钟',
     status: 'template',

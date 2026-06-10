@@ -182,7 +182,55 @@ export const games = [
       finishLabel: '点亮星点',
       resetLabel: '重来'
     }
-  },  {
+  },
+  {
+    id: 'color-paper-synth',
+    name: '彩纸合成器',
+    shortName: '彩纸琴',
+    navName: '彩纸',
+    tag: '新玩法 3',
+    theme: '纸面音乐厅',
+    route: '/play/color-paper-synth',
+    detailRoute: '/games/color-paper-synth',
+    pageFile: 'frontend/src/views/games/ColorPaperSynthGame.vue',
+    summary: '用选色笔把纸面色块绑定为钢琴音和低音鼓，随后用食指进入固定色块框来触发声音。',
+    coverLine: '这是一间把现实纸面变成乐器的音乐厅：先给 C 大调音阶和低音鼓绑定彩色色块，再用手指进入画面中的固定色块框进行演奏。',
+    steps: ['申请摄像头权限', '选择音色绑定色块', '点击色块演奏音乐'],
+    stamp: '彩纸合成器章',
+    template: false,
+    templateOrder: 0,
+    pageRole: 'paper-synth-game',
+    backendId: 'color-paper-synth',
+    tone: 'gold',
+    spec: {
+      level: 'paper-synth-game',
+      requiresOwnEntry: true,
+      requiresRuleBoard: true,
+      requiresPlayStage: true,
+      requiresRecord: true,
+      requiresBackendStats: true,
+      requiresCameraPermission: true,
+      requiresOfficialGestureRecognizer: true,
+      requiresHandSkeleton: true,
+      usesColorSampling: true,
+      usesAudioSynthesis: true,
+      noKeyboardCoreInput: true
+    },
+    play: {
+      kicker: 'Paper Synth Game',
+      intro: '用选色笔把纸面色块绑定为电子琴音和低音鼓，随后用食指进入固定色块框来演奏声音。',
+      idleTitle: '等待摄像头',
+      activeTitle: '纸面音乐厅演奏中',
+      doneTitle: '演奏已盖章',
+      idleHint: '先申请摄像头权限，再选择一个音色并点击纸面色块完成绑定。',
+      activeHint: '选择音色绑定色块，食指进入半透明矩形框时会触发对应声音。',
+      doneHint: '这次纸面演奏已经写入手账，可以继续演奏或重新绑定色块。',
+      startLabel: '开启音乐厅',
+      finishLabel: '手账盖章',
+      resetLabel: '重置绑定'
+    }
+  },
+  {
     id: 'bell-template',
     name: '乐园敲敲钟',
     shortName: '敲敲钟',
