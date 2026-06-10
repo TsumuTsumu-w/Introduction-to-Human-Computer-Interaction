@@ -1,10 +1,10 @@
 import { games, findGame } from './data/games.js'
 
-if (!Array.isArray(games) || games.length !== 7) {
-  throw new Error('games data must contain exactly seven games')
+if (!Array.isArray(games) || games.length !== 8) {
+  throw new Error('games data must contain exactly eight games')
 }
 
-for (const id of ['reaction-wave', 'magic-block-builder', 'emotion-cipher-gate', 'voice-gesture-radio', 'color-paper-synth', 'bell-template', 'bubble-template']) {
+for (const id of ['reaction-wave', 'magic-block-builder', 'emotion-cipher-gate', 'voice-gesture-radio', 'color-paper-synth', 'dinosaur-run', 'bell-template', 'bubble-template']) {
   if (!findGame(id)) throw new Error(`missing required game id: ${id}`)
 }
 
@@ -30,6 +30,10 @@ if (findGame('voice-gesture-radio')?.template !== false) {
 
 if (findGame('color-paper-synth')?.template !== false) {
   throw new Error('color-paper-synth must not be template')
+}
+
+if (findGame('dinosaur-run')?.template !== false) {
+  throw new Error('dinosaur-run must not be template')
 }
 
 if (findGame('bell-template')?.template !== true) {

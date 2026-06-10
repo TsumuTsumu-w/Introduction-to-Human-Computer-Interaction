@@ -10,6 +10,7 @@ import BlockFreeBuildView from '../views/BlockFreeBuildView.vue'
 import EmotionCipherGateGame from '../views/games/EmotionCipherGateGame.vue'
 import VoiceGestureRadioGame from '../views/games/VoiceGestureRadioGame.vue'
 import ColorPaperSynthGame from '../views/games/ColorPaperSynthGame.vue'
+import DinosaurRunGame from '../views/games/DinosaurRunGame.vue'
 import RulesView from '../views/RulesView.vue'
 import RecordsView from '../views/RecordsView.vue'
 import ToolboxView from '../views/ToolboxView.vue'
@@ -31,6 +32,7 @@ const routes = [
       { path: 'play/emotion-cipher-gate', name: 'emotion-cipher-gate', component: EmotionCipherGateGame, meta: { title: '星语密门' } },
       { path: 'play/voice-gesture-radio', name: 'voice-gesture-radio', component: VoiceGestureRadioGame, meta: { title: '手势星图导航' } },
       { path: 'play/color-paper-synth', name: 'color-paper-synth', component: ColorPaperSynthGame, meta: { title: '彩纸合成器' } },
+      { path: 'play/dinosaur-run', name: 'dinosaur-run', component: DinosaurRunGame, meta: { title: '恐龙奔袭' } },
       { path: 'play/:id', name: 'play-stage', component: PlayStageView, meta: { title: '游玩场' } },
       { path: 'rules', name: 'rules', component: RulesView, meta: { title: '规则牌' } },
       { path: 'records', name: 'records', component: RecordsView, meta: { title: '手账' } },

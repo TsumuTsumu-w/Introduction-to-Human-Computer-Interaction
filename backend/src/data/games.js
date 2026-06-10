@@ -40,6 +40,14 @@ export const games = [
     summary: '用选色笔把纸面色块绑定为电子琴音和低音鼓，随后用食指进入固定色块框来触发声音。'
   },
   {
+    id: 'dinosaur-run',
+    name: '恐龙奔袭',
+    status: 'gesture-dino-run-game',
+    theme: '手势荒原跑道',
+    template: false,
+    summary: '把经典小恐龙奔跑游戏改造成手势输入：握拳跳跃、比 V 俯身，躲开仙人掌和飞鸟。'
+  },
+  {
     id: 'bell-template',
     name: '乐园敲敲钟',
     status: 'template',
