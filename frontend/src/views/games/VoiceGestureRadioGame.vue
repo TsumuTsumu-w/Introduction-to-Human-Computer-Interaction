@@ -457,6 +457,22 @@ onBeforeUnmount(() => {
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
 }
+@supports (-webkit-backdrop-filter: blur(1px)) {
+  .round-card,
+  .readout-card,
+  .camera-card,
+  .board-shell {
+    -webkit-backdrop-filter: blur(18px);
+  }
+}
+@supports (-moz-appearance: none) and (backdrop-filter: blur(1px)) {
+  .round-card,
+  .readout-card,
+  .camera-card,
+  .board-shell {
+    backdrop-filter: blur(18px);
+  }
+}
 
 .round-card,
 .readout-card {
@@ -709,8 +725,16 @@ onBeforeUnmount(() => {
   padding: 14px;
   border-radius: 18px;
   background: rgba(255, 250, 235, .78);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+}
+@supports (-webkit-backdrop-filter: blur(1px)) {
+  .camera-overlay {
+    -webkit-backdrop-filter: blur(18px);
+  }
+}
+@supports (-moz-appearance: none) and (backdrop-filter: blur(1px)) {
+  .camera-overlay {
+    backdrop-filter: blur(18px);
+  }
 }
 
 .camera-overlay small,

@@ -66,7 +66,16 @@ import train from '../assets/park-decor/mini-train.png'
     linear-gradient(135deg, rgba(255,240,198,.94), rgba(226,244,246,.78));
   border: 1px solid rgba(183,142,78,.24);
   box-shadow: var(--shadow);
-  backdrop-filter: blur(18px);
+}
+@supports (-webkit-backdrop-filter: blur(1px)) {
+  .dashboard-game {
+    -webkit-backdrop-filter: blur(18px);
+  }
+}
+@supports (-moz-appearance: none) and (backdrop-filter: blur(1px)) {
+  .dashboard-game {
+    backdrop-filter: blur(18px);
+  }
 }
 
 .dashboard-game.tone-mint {
