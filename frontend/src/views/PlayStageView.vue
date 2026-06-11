@@ -1103,7 +1103,22 @@ onBeforeUnmount(() => {
   background: rgba(255, 250, 235, .76);
   border: 1px solid rgba(183, 142, 78, .22);
   box-shadow: 0 24px 60px rgba(70, 55, 30, .12);
-  backdrop-filter: blur(18px);
+}
+@supports (-webkit-backdrop-filter: blur(1px)) {
+  .mission-board,
+  .skeleton-theater,
+  .privacy-panel,
+  .template-board {
+    -webkit-backdrop-filter: blur(18px);
+  }
+}
+@supports (-moz-appearance: none) and (backdrop-filter: blur(1px)) {
+  .mission-board,
+  .skeleton-theater,
+  .privacy-panel,
+  .template-board {
+    backdrop-filter: blur(18px);
+  }
 }
 
 .mission-board {

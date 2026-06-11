@@ -313,12 +313,22 @@ onBeforeUnmount(() => {
 
 .cipher-panel,
 .cipher-camera-shell {
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
   background: rgba(255, 250, 235, .70);
   border: 1px solid rgba(183, 142, 78, .22);
   box-shadow: 0 18px 46px rgba(70, 55, 30, .12);
   border-radius: 28px;
+}
+@supports (-webkit-backdrop-filter: blur(1px)) {
+  .cipher-panel,
+  .cipher-camera-shell {
+    -webkit-backdrop-filter: blur(18px);
+  }
+}
+@supports (-moz-appearance: none) and (backdrop-filter: blur(1px)) {
+  .cipher-panel,
+  .cipher-camera-shell {
+    backdrop-filter: blur(18px);
+  }
 }
 
 .cipher-panel {

@@ -373,14 +373,46 @@ button { font: inherit; }
 .status-list article,
 .dock-stat,
 .dock-message {
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
   background: rgba(255, 250, 235, .74);
   border: 1px solid rgba(183, 142, 78, .22);
   box-shadow: 0 18px 46px rgba(70, 55, 30, .12);
 }
+@supports (-webkit-backdrop-filter: blur(1px)) {
+  .brand-card,
+  .view-tabs,
+  .top-actions,
+  .left-console,
+  .right-console,
+  .bottom-dock,
+  .panel-card,
+  .guide-card,
+  .privacy-card,
+  .status-list article,
+  .dock-stat,
+  .dock-message {
+    -webkit-backdrop-filter: blur(18px);
+  }
+}
+@supports (-moz-appearance: none) and (backdrop-filter: blur(1px)) {
+  .brand-card,
+  .view-tabs,
+  .top-actions,
+  .left-console,
+  .right-console,
+  .bottom-dock,
+  .panel-card,
+  .guide-card,
+  .privacy-card,
+  .status-list article,
+  .dock-stat,
+  .dock-message {
+    backdrop-filter: blur(18px);
+  }
+}
+
 
 .brand-card {
+  backdrop-filter: blur(18px);
   display: flex;
   align-items: center;
   gap: 12px;
