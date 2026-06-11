@@ -63,11 +63,15 @@ const imageResource = {
 const canvasRef = ref(null)
 const clock = ref(6)
 const isDaytime = computed(() => clock.value >= 6 && clock.value < 18)
+const INITIAL_LEVEL = 1
+const MAX_LEVEL = 3
+const TARGET_FRAME_MS = 1000 / 60
+const MAX_FRAME_MS = 48
 
 const world = {
-  level: 0.5,
-  gravity: 10,
-  interval: 16,
+  level: INITIAL_LEVEL,
+  gravity: 21,
+  interval: TARGET_FRAME_MS,
   width: 600,
   height: 160,
   horizonHeight: 16,
@@ -79,17 +83,20 @@ const world = {
   pavementList: [],
   cloudList: [],
   score: 0,
-  speed: 3.5,
-  next() {
+  speed: 6,
+  next(deltaMs = TARGET_FRAME_MS) {
     if (dinosaur.state !== 'alive') return
 
-    clock.value = (clock.value + 0.0024 * world.level) % 24
-    world.score += world.speed * world.level * 0.08
+    const frameScale = deltaMs / TARGET_FRAME_MS
+    const moveDistance = world.speed * world.level * frameScale
+
+    clock.value = (clock.value + 0.0024 * world.level * frameScale) % 24
+    world.score += world.speed * world.level * 0.08 * frameScale
     emit('score', Math.floor(world.score))
-    dinosaur.next()
+    dinosaur.next(deltaMs)
 
     world.pavementList.forEach((pavement) => {
-      pavement.x -= world.speed * world.level
+      pavement.x -= moveDistance
     })
     const pavementList = world.pavementList.filter((item) => item.x + item.width > 0)
     const lastPavement = pavementList[pavementList.length - 1]
@@ -102,22 +109,25 @@ const world = {
     world.pavementList = pavementList
 
     world.cloudList.forEach((item) => {
-      item.x -= world.speed * world.level
+      item.x -= moveDistance
     })
     const cloudList = world.cloudList.filter((item) => item.x + item.width > 0)
-    if (Math.random() < 0.01) cloudList.push(new Cloud(world.width))
+    if (Math.random() < 0.01 * frameScale) cloudList.push(new Cloud(world.width))
     world.cloudList = cloudList
 
     world.obstacleList.forEach((obstacle) => {
-      obstacle.x -= world.speed * world.level
+      obstacle.x -= moveDistance
       if (obstacle.type === 'pterosaur') {
-        obstacle.wingCounter = (obstacle.wingCounter + 1) % 10
-        if (obstacle.wingCounter === 0) obstacle.wing = obstacle.wing === 'up' ? 'down' : 'up'
+        obstacle.wingCounter += frameScale
+        if (obstacle.wingCounter >= 10) {
+          obstacle.wingCounter = 0
+          obstacle.wing = obstacle.wing === 'up' ? 'down' : 'up'
+        }
       }
     })
     world.obstacleList = world.obstacleList.filter((item) => item.x + item.width > 0)
-    world.obstacleDistance -= world.speed * world.level
-    if (world.obstacleDistance <= 0 && Math.random() < 0.02) {
+    world.obstacleDistance -= moveDistance
+    if (world.obstacleDistance <= 0 && Math.random() < 0.02 * frameScale) {
       world.obstacleList.push(new Obstacle(world.width))
       world.obstacleDistance = world.obstacleMinGap
     }
@@ -130,7 +140,7 @@ const dinosaur = {
   state: 'ready',
   y: 0,
   x: 28,
-  jumpSpeed: 330,
+  jumpSpeed: 400,
   verticalSpeed: 0,
   width: 42,
   height: 45,
@@ -139,24 +149,33 @@ const dinosaur = {
   footstep: 'both',
   creep: false,
   footstepCounter: 0,
-  next() {
+  next(deltaMs = TARGET_FRAME_MS) {
     if (dinosaur.state === 'alive') {
-      dinosaur.footstepCounter = (dinosaur.footstepCounter + 1) % 6
-      if (dinosaur.footstepCounter === 0) dinosaur.footstep = dinosaur.footstep === 'left' ? 'right' : 'left'
+      dinosaur.footstepCounter += deltaMs / TARGET_FRAME_MS
+      if (dinosaur.footstepCounter >= 6) {
+        dinosaur.footstepCounter = 0
+        dinosaur.footstep = dinosaur.footstep === 'left' ? 'right' : 'left'
+      }
     }
 
-    const t = world.interval / 1000
-    const gravity = world.gravity * world.level
-    const verticalSpeed = dinosaur.verticalSpeed * world.level
+    const t = deltaMs / 1000
+    const gravity = world.gravity / (TARGET_FRAME_MS / 1000)
+    const verticalSpeed = dinosaur.verticalSpeed
     const y = dinosaur.y + verticalSpeed * t - 0.5 * gravity * t * t
-    dinosaur.y = y < 0 ? 0 : y
-    if (y > 0) dinosaur.verticalSpeed -= gravity
+    if (y <= 0) {
+      dinosaur.y = 0
+      dinosaur.verticalSpeed = 0
+    } else {
+      dinosaur.y = y
+      dinosaur.verticalSpeed -= gravity * t
+    }
   }
 }
 
 let ctx = null
 let resourcesReady = false
 let lastEmittedState = ''
+let lastFrameAt = 0
 
 class Pavement {
   constructor(x) {
@@ -188,7 +207,7 @@ class Obstacle {
     { type: 'doubleCactus', width: 34, height: 35, collisionPadding: { x: 5, y: 3 } },
     { type: 'tripleCactus', width: 51, height: 35, collisionPadding: { x: 7, y: 3 } },
     { type: 'quadraCactus', width: 75, height: 49, collisionPadding: { x: 10, y: 5 } },
-    { type: 'pterosaur', width: 44, height: 38 }
+    { type: 'pterosaur', width: 44, height: 38, collisionPadding: { x: 7, y: 4 } }
   ]
 
   constructor(x) {
@@ -228,7 +247,7 @@ function initGame() {
   world.obstacleList = []
   world.pavementList = []
   world.cloudList = []
-  world.level = 0.75
+  world.level = INITIAL_LEVEL
   world.score = 0
   clock.value = 6
   createPavement()
@@ -243,15 +262,20 @@ function restartLevelTimer() {
   if (world.timer) clearInterval(world.timer)
   world.timer = window.setInterval(() => {
     const level = world.level + 0.1
-    world.level = level > 3 ? 3 : level
+    world.level = level > MAX_LEVEL ? MAX_LEVEL : level
   }, 10 * 1000)
 }
 
 function startRenderLoop() {
   if (world.animation) window.cancelAnimationFrame(world.animation)
+  lastFrameAt = 0
 
-  const render = () => {
-    world.next()
+  const render = (timestamp) => {
+    if (!lastFrameAt) lastFrameAt = timestamp
+    const deltaMs = Math.min(MAX_FRAME_MS, Math.max(0, timestamp - lastFrameAt))
+    lastFrameAt = timestamp
+
+    world.next(deltaMs || TARGET_FRAME_MS)
     ctx.clearRect(0, 0, world.width, world.height)
     drawHorizon()
     drawCloud()
@@ -424,7 +448,6 @@ function restart() {
 function jump() {
   if (dinosaur.state !== 'alive') {
     start()
-    return
   }
   if (dinosaur.y === 0) {
     dinosaur.creep = false
