@@ -6,7 +6,7 @@
       <div class="records-copy content-layer">
         <p class="section-kicker">Stamp Notebook</p>
         <h1 class="section-title">手账</h1>
-        <p class="section-copy">所有小游戏完成后，都会按同一套记录结构留下小章。</p>
+        <p class="section-copy">查看已经完成的小游戏记录，回顾每一次园区体验。</p>
       </div>
     </section>
 
@@ -25,8 +25,8 @@
 
       <div v-else class="empty-note content-layer">
         <img :src="rabbit" alt="" class="empty-rabbit asset-img" />
-        <h2>手账还没有盖章</h2>
-        <p>先进入任意一个小游戏，完成后这里会出现第一枚小章。</p>
+        <h2>手账还没有记录</h2>
+        <p>先进入任意一个小游戏，完成后这里会出现对应游玩记录。</p>
         <RouterLink class="park-button" to="/games">去游戏庭</RouterLink>
       </div>
     </section>

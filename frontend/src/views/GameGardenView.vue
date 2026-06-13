@@ -6,7 +6,7 @@
       <div class="garden-copy content-layer">
         <p class="section-kicker">Game Garden</p>
         <h1 class="section-title">游戏庭</h1>
-        <p class="section-copy">所有小游戏都按同一套规范接入。新增简单游戏时，先写入游戏数组，再自然出现在这里。</p>
+        <p class="section-copy">选择一个小游戏进入游玩。每张游戏票都对应独立规则和专属游玩页面。</p>
       </div>
     </section>
 
@@ -18,9 +18,9 @@
         </div>
         <h2>{{ game.name }}</h2>
         <p>{{ game.summary }}</p>
-        <div class="file-note">
-          <b>规范链路</b>
-          <span>入口 / 规则 / 游玩场 / 手账 / 后端：{{ game.backendId }}</span>
+        <div class="ticket-focus">
+          <b>体验重点</b>
+          <span>{{ game.coverLine || game.summary }}</span>
         </div>
         <div class="ticket-actions">
           <RouterLink class="park-button" :to="game.route">进入游戏</RouterLink>
@@ -123,7 +123,7 @@ import gameLane from '../assets/park-scenes/game-lane.png'
   line-height: 1.78;
 }
 
-.file-note {
+.ticket-focus {
   margin-top: 18px;
   padding: 12px 14px;
   border-radius: 18px;
@@ -131,22 +131,21 @@ import gameLane from '../assets/park-scenes/game-lane.png'
   border: 1px solid rgba(183,142,78,.18);
 }
 
-.file-note b,
-.file-note span {
+.ticket-focus b,
+.ticket-focus span {
   display: block;
 }
 
-.file-note b {
+.ticket-focus b {
   color: #9a6b36;
   font-size: 12px;
 }
 
-.file-note span {
+.ticket-focus span {
   margin-top: 4px;
   color: #687879;
   font-size: 12px;
-  line-height: 1.5;
-  word-break: break-all;
+  line-height: 1.55;
 }
 
 .ticket-actions {

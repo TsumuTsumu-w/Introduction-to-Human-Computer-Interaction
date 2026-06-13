@@ -4,9 +4,9 @@
       <img :src="gameLane" alt="" class="map-bg asset-img" />
       <div class="map-mist"></div>
       <div class="map-copy content-layer">
-        <p class="section-kicker">Tiny Route</p>
+        <p class="section-kicker">Park Route</p>
         <h1 class="section-title">园区小路</h1>
-        <p class="section-copy">游玩场不是固定站点，而是从某个游戏进入的专属页面。这里展示的是壳子层面的路线。</p>
+        <p class="section-copy">在游戏庭、规则牌、游玩页面和手账之间切换，快速找到下一步入口。</p>
 
         <div class="map-route">
           <RouterLink v-for="stop in parkRouteStops" :key="stop.label" :to="stop.to" :class="{ dynamic: stop.dynamic }">

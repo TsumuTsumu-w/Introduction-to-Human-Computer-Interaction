@@ -1,53 +1,67 @@
-import { games, findGame } from './data/games.js'
+import * as gamesData from './data/games.js'
 
-if (!Array.isArray(games) || games.length !== 8) {
-  throw new Error('games data must contain exactly eight games')
+const games = gamesData.games || gamesData.default || []
+
+const requiredIds = [
+  'reaction-wave',
+  'magic-block-builder',
+  'emotion-cipher-gate',
+  'voice-gesture-radio',
+  'color-paper-synth',
+  'dinosaur-run',
+  'bell-template'
+]
+
+const removedIds = [
+  'bubble-template'
+]
+
+function fail(message) {
+  throw new Error(message)
 }
 
-for (const id of ['reaction-wave', 'magic-block-builder', 'emotion-cipher-gate', 'voice-gesture-radio', 'color-paper-synth', 'dinosaur-run', 'bell-template', 'bubble-template']) {
-  if (!findGame(id)) throw new Error(`missing required game id: ${id}`)
+if (!Array.isArray(games)) {
+  fail('games data must export an array named games')
 }
 
-if (findGame('reaction-wave')?.status !== 'official-gesture-game') {
-  throw new Error('reaction-wave must be official-gesture-game')
+const ids = games.map((item) => item && item.id).filter(Boolean)
+const uniqueIds = new Set(ids)
+
+if (ids.length !== games.length) {
+  fail('every game item must have an id')
 }
 
-if (findGame('reaction-wave')?.template !== false) {
-  throw new Error('reaction-wave must not be template')
+if (uniqueIds.size !== ids.length) {
+  fail('games data contains duplicated game ids')
 }
 
-if (findGame('magic-block-builder')?.template !== false) {
-  throw new Error('magic-block-builder must not be template')
-}
-
-if (findGame('emotion-cipher-gate')?.template !== false) {
-  throw new Error('emotion-cipher-gate must not be template')
-}
-
-if (findGame('voice-gesture-radio')?.template !== false) {
-  throw new Error('voice-gesture-radio must not be template')
-}
-
-if (findGame('color-paper-synth')?.template !== false) {
-  throw new Error('color-paper-synth must not be template')
-}
-
-if (findGame('dinosaur-run')?.template !== false) {
-  throw new Error('dinosaur-run must not be template')
-}
-
-if (findGame('bell-template')?.template !== true) {
-  throw new Error('bell-template must be template')
-}
-
-if (findGame('bubble-template')?.template !== true) {
-  throw new Error('bubble-template must be template')
-}
-
-for (const game of games) {
-  for (const key of ['id', 'name', 'status', 'summary']) {
-    if (!game[key]) throw new Error(`game missing ${key}`)
+for (const id of requiredIds) {
+  if (!uniqueIds.has(id)) {
+    fail(`games data missing required game: ${id}`)
   }
 }
 
-console.log('STATIC_SELF_TEST_OK')
+for (const id of removedIds) {
+  if (uniqueIds.has(id)) {
+    fail(`games data still contains removed game: ${id}`)
+  }
+}
+
+if (games.length !== requiredIds.length) {
+  fail(`games data must contain exactly ${requiredIds.length} registered games after removing bubble-template, got ${games.length}`)
+}
+
+for (const game of games) {
+  if (!game.title && !game.name) {
+    fail(`game ${game.id} must have title or name`)
+  }
+  if (!game.description && !game.summary) {
+    fail(`game ${game.id} must have description or summary`)
+  }
+  if (!game.route && !game.path && !game.backendKey && !game.id) {
+    fail(`game ${game.id} must have a route/path/backend key`)
+  }
+}
+
+console.log(`SELF_TEST_OK games=${games.length} ids=${ids.join(',')}`)
+

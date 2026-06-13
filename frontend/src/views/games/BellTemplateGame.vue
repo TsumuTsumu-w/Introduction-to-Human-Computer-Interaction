@@ -5,18 +5,14 @@
       <div class="stage-mist"></div>
 
       <div class="stage-copy content-layer">
-        <p class="section-kicker">Template Game 1</p>
+        <p class="section-kicker">Special Mini Game</p>
         <h1 class="section-title">{{ game.name }}</h1>
-        <p class="section-copy">模板一用于演示最小小游戏结构：自己的入口、自己的规则、自己的本体页、自己的记录字段和后端统计路径。</p>
+        <p class="section-copy">轻量铃铛挑战：点击开始后敲响小铃铛，完成一次简短互动并写入手账。</p>
 
         <div class="stage-actions">
-          <button class="park-button" @click="startRound">开始模板一</button>
+          <button class="park-button" @click="startRound">开始敲钟</button>
           <button class="park-button soft" @click="resetRound">重来</button>
-          <RouterLink class="park-button ghost" :to="game.detailRoute">查看结构</RouterLink>
-        </div>
-
-        <div class="structure-note">
-          复制新增游戏时，优先参考这个文件：{{ game.pageFile }}。
+          <RouterLink class="park-button ghost" :to="game.detailRoute">查看游玩票</RouterLink>
         </div>
       </div>
 
@@ -43,15 +39,15 @@ const playing = ref(false)
 const done = ref(false)
 
 const boardTitle = computed(() => {
-  if (done.value) return '模板一完成'
+  if (done.value) return '铃铛已敲响'
   if (playing.value) return '小铃铛亮了'
   return '等你开始'
 })
 
 const boardHint = computed(() => {
-  if (done.value) return '模板一已经完成记录链路。'
-  if (playing.value) return '点击小铃铛，写入一条模板记录。'
-  return '按下开始模板一。'
+  if (done.value) return '这次铃铛挑战已经写入手账。'
+  if (playing.value) return '点击小铃铛完成挑战。'
+  return '按下开始，准备敲响小铃铛。'
 })
 
 function readRecords() {
@@ -139,67 +135,64 @@ function resetRound() {
 .stage-board {
   position: relative;
   align-self: center;
-  min-height: 430px;
-  padding: 34px;
-  border-radius: 38px;
+  min-height: 360px;
+  padding: 28px;
   display: grid;
-  align-content: center;
   justify-items: center;
-  gap: 18px;
+  align-content: center;
+  gap: 14px;
   text-align: center;
-  background: rgba(255,250,235,.76);
-  border: 1px solid rgba(183,142,78,.24);
-  box-shadow: 0 24px 60px rgba(70,55,30,.14);
-  overflow: hidden;
+  border-radius: 34px;
+  background: rgba(255,255,255,.78);
+  border: 1px solid rgba(183,142,78,.22);
+  box-shadow: 0 20px 52px rgba(60,50,28,.12);
 }
 
 .board-bird {
   position: absolute;
-  right: -8px;
-  top: -22px;
-  width: 122px;
+  width: 118px;
+  right: 16px;
+  top: -72px;
 }
 
 .signal-light {
-  width: 118px;
-  height: 118px;
+  width: 110px;
+  height: 110px;
   border-radius: 50%;
-  background: radial-gradient(circle, #fff4b6, #d7a44a);
-  box-shadow: 0 0 0 28px rgba(235,190,85,.18), 0 22px 36px rgba(101,79,38,.16);
+  background:
+    radial-gradient(circle at 30% 24%, rgba(255,255,255,.96), transparent 28%),
+    linear-gradient(135deg, #ffe6a3, #e6a65d);
+  border: 4px solid rgba(255,255,255,.82);
+  box-shadow: 0 18px 40px rgba(178,119,58,.26);
   cursor: pointer;
 }
 
 .stage-board.active .signal-light {
-  background: radial-gradient(circle, #d5f7ff, #5aa5bd);
-  box-shadow: 0 0 0 28px rgba(118,205,225,.2), 0 22px 36px rgba(52,87,101,.16);
+  animation: bellPulse 1s ease-in-out infinite;
 }
 
 .stage-board.done .signal-light {
-  background: radial-gradient(circle, #e2ffd0, #7dbb78);
+  background: linear-gradient(135deg, #bfe8c9, #6dbb8c);
 }
 
 .stage-board strong {
   color: var(--ink);
-  font-size: 34px;
+  font-size: 30px;
   letter-spacing: -.04em;
 }
 
 .stage-board span {
-  color: #61706e;
-}
-
-.structure-note {
-  margin-top: 18px;
-  padding: 14px 16px;
-  border-radius: 18px;
-  background: rgba(255,255,255,.55);
-  border: 1px solid rgba(183,142,78,.18);
   color: #687879;
-  line-height: 1.6;
-  font-size: 13px;
+  line-height: 1.7;
 }
 
-@media(max-width: 900px) {
+@keyframes bellPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+}
+
+@media(max-width: 980px) {
   .template-stage { grid-template-columns: 1fr; }
 }
 </style>
+

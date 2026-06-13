@@ -6,7 +6,7 @@
       <div class="rules-copy content-layer">
         <p class="section-kicker">Rule Board</p>
         <h1 class="section-title">规则牌</h1>
-        <p class="section-copy">这里自动读取小游戏数组。以后新增游戏，只要写进注册表，就会出现在规则牌里。</p>
+        <p class="section-copy">先看清每个小游戏的操作方式，再进入对应游玩页面体验。</p>
       </div>
     </section>
 

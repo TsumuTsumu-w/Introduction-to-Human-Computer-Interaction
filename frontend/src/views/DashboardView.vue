@@ -10,9 +10,8 @@
         <div class="spec-row">
           <span>入口</span>
           <span>规则</span>
-          <span>游玩场</span>
+          <span>游玩</span>
           <span>手账</span>
-          <span>后端</span>
         </div>
         <div class="dashboard-actions">
           <RouterLink class="park-button" :to="game.route">进入游戏</RouterLink>
@@ -27,7 +26,7 @@
         <div class="content-layer">
           <p class="section-kicker">Stamp Desk</p>
           <h2>手账盖章处</h2>
-          <p>三个游戏都走同一条规范链路：进入对应游玩场，完成后写入手账，并同步后端记录接口。</p>
+          <p>完成小游戏后，可以在这里查看本机保留的游玩记录。</p>
           <RouterLink class="park-button soft" to="/records">看看手账</RouterLink>
         </div>
       </article>
@@ -35,8 +34,8 @@
       <article class="wood-card train-corner">
         <img :src="train" alt="" class="train-small asset-img" />
         <div class="content-layer">
-          <b>三张游戏票已对齐</b>
-          <span>手势反应挑战也已经按模板标准补齐，不再是特殊结构。</span>
+          <b>园区游玩路线</b>
+          <span>从游戏庭选择小游戏，查看规则后进入对应游玩页面。</span>
         </div>
       </article>
     </section>
@@ -192,3 +191,7 @@ import train from '../assets/park-decor/mini-train.png'
   }
 }
 </style>
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/qhz

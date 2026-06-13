@@ -1,4 +1,4 @@
-<template>
+﻿<template>
   <div class="page-field">
     <section class="toolhouse">
       <img :src="handbook" alt="" class="tool-bg asset-img" />
@@ -6,7 +6,7 @@
       <div class="tool-copy content-layer">
         <p class="section-kicker">Tool House</p>
         <h1 class="section-title">工具箱</h1>
-        <p class="section-copy">这里只有轻量整理项。游玩细节都留给具体小游戏。</p>
+        <p class="section-copy">检查本地服务状态，管理手账记录，确认园区基础功能。</p>
       </div>
     </section>
 
@@ -18,13 +18,13 @@
       </article>
       <article class="paper-card tool-tile">
         <b>清空手账</b>
-        <span>把本机留下的小章清掉，重新开始。</span>
+        <span>清空本机保存的游玩记录，重新开始体验。</span>
         <button class="park-button ghost" @click="clearRecords">清空</button>
       </article>
       <article class="paper-card tool-tile mascot-tile">
         <img :src="bird" alt="" class="asset-img" />
         <b>导览员</b>
-        <span>蓝鸟会在园区里提醒你走到哪里。</span>
+        <span>蓝鸟会在园区里提醒你当前所在位置。</span>
       </article>
     </section>
   </div>

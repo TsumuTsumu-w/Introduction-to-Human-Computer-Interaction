@@ -386,10 +386,6 @@
           <button class="park-button ghost" type="button" @click="resetTemplateRound">{{ game.play.resetLabel }}</button>
         </div>
 
-        <div class="mode-note">
-          <b>模板逻辑文件</b>
-          <span>{{ templateLogicFile }}</span>
-        </div>
       </div>
 
       <div class="template-board content-layer" :class="{ active: templateState.phase === 'active', done: templateState.phase === 'done' }">
@@ -410,7 +406,6 @@ import { createGestureEngine, drawPrivacyPreview, drawPureSkeleton, scoreSkeleto
 import { DIFFICULTY_LEVELS, advanceReactionPhase, createReactionState, evaluateReactionFrame, getCountdownText, getHandSeekText, getCurrentTask, getDifficulty, getModeText, getOfficialGestureText, getTaskPrompt, resetReactionState, startReactionState } from '../games/reactionWaveLogic'
 import { saveGameRecord } from '../games/gameRecords'
 import { createBellTemplateState, hitBellTemplate, resetBellTemplate, startBellTemplate } from '../games/bellTemplateLogic'
-import { createBubbleTemplateState, popBubbleTemplate, resetBubbleTemplate, startBubbleTemplate } from '../games/bubbleTemplateLogic'
 import { MAGIC_BLOCK_DIFFICULTIES, applyMagicBlockVoice, createMagicBlockState, drawMagicBlockStage, getMagicBlockDifficulty, getMagicBlockPrompt, getMagicBlockSeekText, getMagicBlockSummary, resetMagicBlockState, startMagicBlockState, updateMagicBlockFrame } from '../games/magicBlockBuilderLogic'
 import plaza from '../assets/park-scenes/plaza.png'
 import bird from '../assets/park-decor/bird-guide.png'
@@ -931,12 +926,6 @@ function stopBlockCamera(updateText = true) {
 
 const templateState = ref(createBellTemplateState())
 
-const templateLogicFile = computed(() => {
-  if (game.value.id === 'bell-template') return 'frontend/src/games/bellTemplateLogic.js'
-  if (game.value.id === 'bubble-template') return 'frontend/src/games/bubbleTemplateLogic.js'
-  return 'frontend/src/games/reactionWaveLogic.js'
-})
-
 const templateBoardTitle = computed(() => {
   if (templateState.value.phase === 'done') return game.value.play.doneTitle
   if (templateState.value.phase === 'active') return game.value.play.activeTitle
@@ -944,27 +933,15 @@ const templateBoardTitle = computed(() => {
 })
 
 function resetTemplateStateForGame() {
-  if (game.value.id === 'bubble-template') {
-    templateState.value = createBubbleTemplateState()
-  } else {
-    templateState.value = createBellTemplateState()
-  }
+  templateState.value = createBellTemplateState()
 }
 
 function startTemplateRound() {
-  if (game.value.id === 'bubble-template') {
-    templateState.value = startBubbleTemplate(templateState.value)
-  } else {
-    templateState.value = startBellTemplate(templateState.value)
-  }
+  templateState.value = startBellTemplate(templateState.value)
 }
 
 async function finishTemplateRound() {
-  if (game.value.id === 'bubble-template') {
-    templateState.value = popBubbleTemplate(templateState.value)
-  } else {
-    templateState.value = hitBellTemplate(templateState.value)
-  }
+  templateState.value = hitBellTemplate(templateState.value)
 
   if (templateState.value.phase === 'done') {
     await saveGameRecord(game.value, {
@@ -977,11 +954,7 @@ async function finishTemplateRound() {
 }
 
 function resetTemplateRound() {
-  if (game.value.id === 'bubble-template') {
-    templateState.value = resetBubbleTemplate()
-  } else {
-    templateState.value = resetBellTemplate()
-  }
+  templateState.value = resetBellTemplate()
 }
 
 watch(() => route.params.id, () => {
@@ -2144,3 +2117,7 @@ onBeforeUnmount(() => {
 }
 </style>
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/qhz

@@ -5,19 +5,19 @@
 
     <div class="hero-copy content-layer">
       <p class="section-kicker">Play Garden</p>
-      <h1 class="section-title">今天只开放一局</h1>
-      <p class="section-copy">跟着小灯完成一次轻松反应练习。页面外面只负责带路，真正的游玩从这一局开始。</p>
+      <h1 class="section-title">GestureFlow Park</h1>
+      <p class="section-copy">选择一项小游戏开始体验。每个游戏都配有独立入口、规则说明、游玩页面和手账记录。</p>
 
       <div class="hero-actions">
-        <RouterLink class="park-button" to="/play/reaction-wave">开始手势反应挑战</RouterLink>
-        <RouterLink class="park-button soft" to="/rules">先看规则牌</RouterLink>
+        <RouterLink class="park-button" to="/games">进入游戏庭</RouterLink>
+        <RouterLink class="park-button soft" to="/rules">查看规则牌</RouterLink>
       </div>
     </div>
 
     <div class="hero-side content-layer">
       <img :src="bird" alt="" class="guide-bird asset-img" />
-      <b>蓝鸟导览员提醒</b>
-      <span>完成一局后，手账会多一个小章。</span>
+      <b>蓝鸟导览员</b>
+      <span>完成小游戏后，可在手账页查看对应游玩记录。</span>
     </div>
   </section>
 </template>
@@ -70,7 +70,7 @@ import bird from '../../assets/park-decor/bird-guide.png'
   position: absolute;
   right: 36px;
   bottom: 30px;
-  width: 260px;
+  width: 270px;
   padding: 18px;
   border-radius: 26px;
   background: rgba(255,250,235,.80);
