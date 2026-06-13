@@ -1,0 +1,16 @@
+{
+  "name": "gestureflow-backend",
+  "version": "5.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node src/server.js",
+    "check": "node --check src/server.js && node src/self-test.js",
+    "self-test": "node --check src/server.js && node src/self-test.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "mysql2": "^3.11.3"
+  }
+}

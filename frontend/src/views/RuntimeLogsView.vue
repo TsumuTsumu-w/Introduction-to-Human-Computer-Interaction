@@ -1,0 +1,1 @@
+<template><RecordsView /></template><script setup>import RecordsView from './RecordsView.vue'</script>

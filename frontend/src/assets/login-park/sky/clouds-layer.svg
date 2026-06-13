@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+<defs><filter id="soft"><feGaussianBlur stdDeviation="0.4"/></filter><linearGradient id="skyfade" x1="0" x2="0" y1="0" y2="1"><stop stop-color="#e8f7ff"/><stop offset="1" stop-color="#f7fbff" stop-opacity="0"/></linearGradient></defs>
+<rect width="1440" height="320" fill="url(#skyfade)"/>
+<g filter="url(#soft)" fill="#fff" opacity="0.88">
+<g transform="translate(110 76) scale(0.92)"><ellipse cx="60" cy="42" rx="58" ry="28"/><ellipse cx="108" cy="34" rx="68" ry="36"/><ellipse cx="162" cy="48" rx="74" ry="30"/><ellipse cx="110" cy="62" rx="128" ry="30"/></g>
+<g transform="translate(500 38) scale(1.12)"><ellipse cx="55" cy="45" rx="58" ry="30"/><ellipse cx="120" cy="30" rx="86" ry="42"/><ellipse cx="205" cy="48" rx="88" ry="34"/><ellipse cx="145" cy="66" rx="168" ry="32"/></g>
+<g transform="translate(1020 72) scale(0.8)"><ellipse cx="52" cy="44" rx="60" ry="28"/><ellipse cx="116" cy="31" rx="78" ry="38"/><ellipse cx="178" cy="48" rx="78" ry="32"/><ellipse cx="126" cy="64" rx="144" ry="30"/></g>
+</g>
+<g stroke="#475b75" stroke-width="3" opacity="0.25" fill="none" stroke-linecap="round">
+<path d="M1170 148q14-14 28 0q14-14 28 0"/><path d="M1248 120q10-10 20 0q10-10 20 0"/><path d="M335 152q10-10 20 0q10-10 20 0"/>
+</g>
+</svg>

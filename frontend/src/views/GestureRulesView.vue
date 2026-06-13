@@ -1,0 +1,1 @@
+<template><RulesView /></template><script setup>import RulesView from './RulesView.vue'</script>
